@@ -1,6 +1,6 @@
 {
   "name": "js-list-container",
-  "version": "0.90.13",
+  "version": "0.90.14",
   "description": "An array list container that augments the standard javascript array without altering the array prototype.",
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "gulp-util": "^3.0.1",
     "jshint-stylish": "^1.0.0",
     "map-stream": "^0.1.0",
-    "simple-node-logger": "^0.92.12",
+    "simple-node-logger": "^0.92.13",
     "vinyl-fs": "^0.3.8"
   },
   "author": "darryl.west@raincitysoftware.com",
