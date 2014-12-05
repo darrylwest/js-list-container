@@ -7,13 +7,57 @@ An array list container that augments the standard javascript array without alte
 
 ## Overview
 
+A simple wrapper/container for array lists that provides a base class to extend without modifying the javascript Array prototype.
+
 ## Installation
 
 ~~~
 	npm install js-list-container --save
 ~~~
 
+## API
+
+### Instance Methods
+* push/pop
+* shift/unshift
+* forEach
+* forEachIndex
+* size
+* clear
+* getList / setList
+* sort
+* setSorter
+* stringify
+
+### Instance Attributes
+
+* lastRefresh
+
+### Class Methods
+
+* extend
+* parse
+
 ## Use
+
+Simple use without extension...
+
+~~~
+	var ListContainer = require('js-list-container'),
+		options = {},
+		container;
+		
+	options.list = require('./list.json');
+	options.lastRefresh = new Date();
+	
+	container = new ListContainer( options );
+	
+	container.size() === options.list.length;
+	
+	container.forEach(function(item) {
+		console.log( item );
+	});
+~~~
 
 
 ## Tests
