@@ -104,4 +104,4 @@ All objects are tested using gulp and mocha.  You can run tests by doing this:
 ~~~
 
 - - -
-<p><small><em>copyright © 2014 rain city software | version 0.90.12</em></small></p>
+<p><small><em>copyright © 2014 rain city software | version 0.90.13</em></small></p>
