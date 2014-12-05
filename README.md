@@ -59,6 +59,33 @@ Simple use without extension...
 	});
 ~~~
 
+Simple extension use case...
+
+~~~
+	var MyCollection = function(options) {
+		var container = this;
+		
+		ListContainer.extend( this, options );
+		
+		this.getItem = function(index) {
+			var list = container.getList();
+			
+			return list[ index ];
+		};
+	};
+
+	var collection = new MyCollection( opts );
+	
+	collection.push( { id:1, created:new Date() } );
+	collection.push( { id:2, created:new Date() } );
+	
+	collection.size() === 2;
+	
+	var item = collection.getItem( 1 );
+	item.id === 2;
+	
+~~~
+
 
 ## Tests
 
@@ -77,4 +104,4 @@ All objects are tested using gulp and mocha.  You can run tests by doing this:
 ~~~
 
 - - -
-<p><small><em>copyright © 2014 rain city software | version 0.90.11</em></small></p>
+<p><small><em>copyright © 2014 rain city software | version 0.90.12</em></small></p>

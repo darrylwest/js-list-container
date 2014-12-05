@@ -1,6 +1,6 @@
 {
   "name": "js-list-container",
-  "version": "0.90.11",
+  "version": "0.90.12",
   "description": "An array list container that augments the standard javascript array without altering the array prototype.",
   "repository": {
     "type": "git",
