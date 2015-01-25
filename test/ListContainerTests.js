@@ -219,7 +219,7 @@ describe('ListContainer', function() {
             var completeCallback = function() {
                 count++;
 
-                if (count > 3) {
+                if (count > 4) {
                     done();
                 }
             };
@@ -231,6 +231,7 @@ describe('ListContainer', function() {
             container.pop();
             container.unshift( { id:444, mything:'boo boo' });
             container.pop();
+            container.clear();
         });
     });
 
