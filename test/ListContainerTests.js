@@ -236,6 +236,51 @@ describe('ListContainer', function() {
     });
 
     describe('#modelChangeEvent', function() {
-        it('should fire event when updateModel is invoked');
+        var list = getList(),
+            container = new ListContainer( { list:list } );
+
+        it('should fire event when updateModel is invoked and model is found', function(done) {
+            var obj = container.getList()[ 3 ],
+                changedObj = dash.clone( obj),
+                newTitle = 'My New Title',
+                callback;
+
+            callback = function(oldVal, newVal) {
+
+                should.exist(oldVal);
+                should.exist(newVal);
+
+                newVal.title.should.equal( newTitle );
+
+                done();
+            };
+
+            container.onDataChange( callback );
+
+            changedObj.title = newTitle;
+            changedObj.lastUpdated = new Date();
+
+            container.updateModel( obj, changedObj ).should.equal( true );
+
+        });
+
+        it('should not fire when updateModel is invoked and model is not found', function() {
+            var obj = container.pop(),
+                changedObj = dash.clone( obj),
+                newTitle = 'My New Title',
+                callback;
+
+            callback = function(oldVal, newVal) {
+                should.new.exist(oldVal);
+                should.new.exist(newVal);
+            };
+
+            container.onDataChange( callback );
+
+            changedObj.title = newTitle;
+            changedObj.lastUpdated = new Date();
+
+            container.updateModel( obj, changedObj ).should.equal( false );
+        });
     });
 });
