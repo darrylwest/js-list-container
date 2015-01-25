@@ -1,7 +1,7 @@
 #List Container
 - - - 
 
-An array list container that augments the standard javascript array without altering the array prototype.
+An evented array list container that augments the standard javascript array without altering the array prototype. Events fire when the array changes or when a contained value or model changes.
 
 [![NPM version](https://badge.fury.io/js/js-list-container.svg)](http://badge.fury.io/js/js-list-container) [![Build Status](https://travis-ci.org/darrylwest/js-list-container.svg?branch=master)](https://travis-ci.org/darrylwest/js-list-container) [![Dependency Status](https://david-dm.org/darrylwest/js-list-container.svg)](https://david-dm.org/darrylwest/js-list-container)
 
@@ -21,7 +21,7 @@ A simple wrapper/container for array lists that provides a base class to extend 
 * push/pop
 * shift/unshift
 * forEach
-* forEachIndex
+* forEachIndex - iterator with index
 * size
 * clear
 * getList / setList
@@ -32,11 +32,17 @@ A simple wrapper/container for array lists that provides a base class to extend 
 ### Instance Attributes
 
 * lastRefresh
+* lastUpdate
 
 ### Class Methods
 
 * extend
 * parse
+
+### Events
+
+* onListChange - whenever the list size changes
+* onDataChange - whenever a contained object/value changes
 
 ## Use
 
@@ -104,4 +110,4 @@ All objects are tested using gulp and mocha.  You can run tests by doing this:
 ~~~
 
 - - -
-<p><small><em>copyright © 2014 rain city software | version 0.90.14</em></small></p>
+<p><small><em>copyright © 2014-2015 rain city software | version 0.90.15</em></small></p>

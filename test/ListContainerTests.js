@@ -29,7 +29,19 @@ describe('ListContainer', function() {
         'setList',
         'size',
         'clear',
-        'stringify'
+        'stringify',
+        'onListChange',
+        'onDataChange',
+        'updateModel',
+        // inherited from event emitter
+        'addListener',
+        'emit',
+        'listeners',
+        'on',
+        'once',
+        'removeAllListeners',
+        'removeListener',
+        'setMaxListeners'
     ];
 
     describe('#instance', function() {
@@ -195,5 +207,34 @@ describe('ListContainer', function() {
 
             child.getItem( 3 ).id.should.equal( 'e52c77a0f41365572b1386351d51becf4c3ded83' );
         });
+    });
+
+    describe('#listChangeEvent', function() {
+        var list = getList(),
+            container = new ListContainer( { list:list } );
+
+        it('should fire events for push, pop, shift, unshift, and clear', function(done) {
+            var count = 0;
+
+            var completeCallback = function() {
+                count++;
+
+                if (count > 3) {
+                    done();
+                }
+            };
+
+
+            container.onListChange( completeCallback );
+
+            container.push( {id:333, mything:'thang' });
+            container.pop();
+            container.unshift( { id:444, mything:'boo boo' });
+            container.pop();
+        });
+    });
+
+    describe('#modelChangeEvent', function() {
+        it('should fire event when updateModel is invoked');
     });
 });
