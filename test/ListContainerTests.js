@@ -261,10 +261,9 @@ describe('ListContainer', function() {
             changedObj.lastUpdated = new Date();
 
             container.updateModel( obj, changedObj ).should.equal( true );
-
         });
 
-        it('should not fire when updateModel is invoked and model is not found', function() {
+        it('should not fire when updateModel is invoked and model is not contained', function() {
             var obj = container.pop(),
                 changedObj = dash.clone( obj),
                 newTitle = 'My New Title',

@@ -27,13 +27,13 @@ A simple wrapper/container for array lists that provides a base class to extend 
 * getList / setList
 * sort
 * setSorter
-* stringify
 * updateModel - will trigger data model change event
+* stringify
 
 ### Instance Attributes
 
 * lastRefresh
-* lastUpdate
+* lastChangeDate - updated by container with push/pop/etc
 
 ### Class Methods
 
@@ -154,4 +154,4 @@ All objects are tested using gulp and mocha.  You can run tests by doing this:
 ~~~
 
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.90.16</em></small></p>
+<p><small><em>copyright © 2014-2015 rain city software | version 0.90.17</em></small></p>
