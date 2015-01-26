@@ -1,6 +1,6 @@
 {
   "name": "js-list-container",
-  "version": "0.90.17",
+  "version": "0.90.18",
   "description": "An evented array list container that augments the standard javascript array without altering the array prototype. Events fire when the list changes or when a contained model is updated.",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "container"
   ],
   "dependencies": {
-    "lodash": "^2.4.1"
+    "lodash": "^3.0.0"
   },
   "devDependencies": {
     "chai": "^1.9.2",
