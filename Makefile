@@ -1,3 +1,7 @@
+JSFILES=index.js lib/*.js test/*.js
+TESTFILES=test/*.js
+JSHINT=node_modules/.bin/jshint
+MOCHA=node_modules/.bin/mocha
 
 all:
 	@make test
@@ -7,21 +11,19 @@ npm:
 
 jshint:
 	@( [ -d node_modules ] || make npm )
-	@( gulp jshint )
+	@( $(JSHINT) --verbose --reporter node_modules/jshint-stylish/ $(JSFILES) )
 
 test:
 	@( [ -d node_modules ] || make npm )
-	@( gulp test )
+	@( $(MOCHA) $(TESTFILES) )
+	@( $(JSHINT) --reporter node_modules/jshint-stylish/ $(JSFILES) )
 
 watch:
-	@( gulp watch )
+	@( ./watcher.js )
 
-docs:
-	@( gulp jsdoc )
 
 .PHONY: jshint
 .PHONY: npm
 .PHONY: test
 .PHONY: watch
 .PHONY: build
-.PHONY: docs

@@ -1,6 +1,6 @@
 {
   "name": "js-list-container",
-  "version": "0.90.21",
+  "version": "0.91.22",
   "description": "An evented array list container that augments the standard javascript array without altering the array prototype. Events fire when the list changes or when a contained model is updated.",
   "repository": {
     "type": "git",
@@ -15,23 +15,13 @@
     "container"
   ],
   "dependencies": {
-    "lodash": "^3.7.0"
+    "lodash": "^4.17.2"
   },
   "devDependencies": {
-    "chai": "^1.9.2",
-    "del": "^0.1.3",
-    "gulp": "^3.8.8",
-    "gulp-concat": "^2.4.1",
-    "gulp-if": "^1.2.5",
-    "gulp-jshint": "^1.8.5",
-    "gulp-mocha": "^1.1.0",
-    "gulp-plumber": "^0.6.6",
-    "gulp-uglify": "^1.0.1",
-    "gulp-util": "^3.0.1",
-    "jshint-stylish": "^1.0.0",
-    "map-stream": "^0.1.0",
-    "simple-node-logger": "^0.92.13",
-    "vinyl-fs": "^0.3.8"
+    "chai": "^3.5.0",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1",
+    "mocha": "^3.2.0"
   },
   "author": "darryl.west@raincitysoftware.com",
   "license": "Apache 2.0",

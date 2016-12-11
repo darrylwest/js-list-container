@@ -4,7 +4,7 @@
  * @author: darryl.west@roundpeg.com
  * @created: 12/4/14 8:51 AM
  */
-var should = require('chai').should(),
+const should = require('chai').should(),
     dash = require('lodash' ),
     items = require('./fixtures/test-list.json' ),
     ListContainer = require('../lib/ListContainer' );
@@ -12,11 +12,11 @@ var should = require('chai').should(),
 describe('ListContainer', function() {
     'use strict';
 
-    var getList = function() {
+    const getList = function() {
         return dash.clone( items );
     };
 
-    var methods = [
+    const methods = [
         'forEach',
         'forEachIndex',
         'push',
@@ -32,20 +32,11 @@ describe('ListContainer', function() {
         'stringify',
         'onListChange',
         'onDataChange',
-        'updateModel',
-        // inherited from event emitter
-        'addListener',
-        'emit',
-        'listeners',
-        'on',
-        'once',
-        'removeAllListeners',
-        'removeListener',
-        'setMaxListeners'
+        'updateModel'
     ];
 
     describe('#instance', function() {
-        var container = new ListContainer();
+        const container = new ListContainer();
 
         it('should create an instance of ListContainer', function() {
             should.exist( container );
@@ -54,14 +45,14 @@ describe('ListContainer', function() {
         });
 
         it('should have all known methods by size and type', function() {
-            dash.methods( container ).length.should.equal( methods.length );
-            methods.forEach(function(method) {
+            dash.functions( container ).length.should.equal( methods.length );
+            methods.forEach(method => {
                 container[ method ].should.be.a( 'function' );
             });
         });
 
         it('should accept a named array in constructor and assign to list', function() {
-            var list = getList(),
+            const list = getList(),
                 container = new ListContainer( { list:list } );
 
             should.exist( container );
@@ -69,7 +60,7 @@ describe('ListContainer', function() {
         });
 
         it('should accept a ListContainer on construction', function() {
-            var list = getList(),
+            const list = getList(),
                 dt = new Date(),
                 ref = new ListContainer( { list:list, lastRefresh:dt }),
                 container = new ListContainer( ref );
@@ -82,9 +73,10 @@ describe('ListContainer', function() {
 
     describe('#methods', function() {
         it('should push/pop items like an array', function() {
-            var ref = { id:1 },
-                item,
+            const ref = { id:1 },
                 container = new ListContainer();
+            
+            let item;
 
             container.getList().length.should.equal( 0 );
             container.push( ref );
@@ -96,7 +88,7 @@ describe('ListContainer', function() {
         });
 
         it('should shift/unshift items list an array', function() {
-            var ref = { id:1 },
+            let ref = { id:1 },
                 item,
                 container = new ListContainer();
 
@@ -110,7 +102,7 @@ describe('ListContainer', function() {
         });
 
         it('should iterate over list like an array', function() {
-            var list = getList(),
+            let list = getList(),
                 dt = new Date(),
                 container = new ListContainer( { list:list, lastRefresh:dt } ),
                 idx = 0;
@@ -123,7 +115,7 @@ describe('ListContainer', function() {
         });
 
         it('should clear an array', function() {
-            var list = getList(),
+            const list = getList(),
                 container = new ListContainer( { list:list } );
 
             container.getList().length.should.equal( list.length );
@@ -132,7 +124,7 @@ describe('ListContainer', function() {
         });
 
         it('should return the length of the current array', function() {
-            var list = getList(),
+            const list = getList(),
                 container = new ListContainer( { list:list } );
 
             container.size().should.equal( list.length );
@@ -141,7 +133,7 @@ describe('ListContainer', function() {
 
     describe('forEachIndex', function() {
         it('should iterate over an array and increment an index', function() {
-            var list = getList(),
+            let list = getList(),
                 container = new ListContainer( { list:list } ),
                 callback,
                 i = 0;
@@ -160,12 +152,12 @@ describe('ListContainer', function() {
     });
 
     describe('#serialize', function() {
-        var list = getList(),
+        let list = getList(),
             dt = new Date(),
             ref = new ListContainer( { list:list, lastRefresh:dt } );
 
         it('should serialize and deserialize the list container', function() {
-            var json = ref.stringify(),
+            let json = ref.stringify(),
                 container;
 
             should.exist( json );
@@ -180,7 +172,7 @@ describe('ListContainer', function() {
 
     describe('extend', function() {
         it('should extend a child object with list container methods', function() {
-            var list = getList(),
+            let list = getList(),
                 dt = new Date(),
                 child,
                 opts = {
@@ -188,13 +180,13 @@ describe('ListContainer', function() {
                     lastRefresh:dt
                 };
 
-            var Child = function(options) {
-                var child = this;
+            const Child = function(options) {
+                const child = this;
 
                 ListContainer.extend( this, options );
 
                 this.getItem = function(idx) {
-                    var list = child.getList();
+                    const list = child.getList();
 
                     return list[ idx ];
                 };
@@ -203,20 +195,20 @@ describe('ListContainer', function() {
             child = new Child( opts );
 
             should.exist( child );
-            dash.methods( child ).length.should.equal( methods.length + 1 );
+            dash.functions( child ).length.should.equal( methods.length + 1 );
 
             child.getItem( 3 ).id.should.equal( 'e52c77a0f41365572b1386351d51becf4c3ded83' );
         });
     });
 
     describe('#listChangeEvent', function() {
-        var list = getList(),
+        const list = getList(),
             container = new ListContainer( { list:list } );
 
         it('should fire events for push, pop, shift, unshift, and clear', function(done) {
-            var count = 0;
+            let count = 0;
 
-            var completeCallback = function() {
+            const completeCallback = function() {
                 count++;
 
                 if (count > 4) {
@@ -236,16 +228,15 @@ describe('ListContainer', function() {
     });
 
     describe('#modelChangeEvent', function() {
-        var list = getList(),
+        const list = getList(),
             container = new ListContainer( { list:list } );
 
         it('should fire event when updateModel is invoked and model is found', function(done) {
-            var obj = container.getList()[ 3 ],
+            const obj = container.getList()[ 3 ],
                 changedObj = dash.clone( obj),
-                newTitle = 'My New Title',
-                callback;
+                newTitle = 'My New Title';
 
-            callback = function(oldVal, newVal) {
+            const callback = function(oldVal, newVal) {
 
                 should.exist(oldVal);
                 should.exist(newVal);
@@ -264,7 +255,7 @@ describe('ListContainer', function() {
         });
 
         it('should not fire when updateModel is invoked and model is not contained', function() {
-            var obj = container.pop(),
+            let obj = container.pop(),
                 changedObj = dash.clone( obj),
                 newTitle = 'My New Title',
                 callback;
