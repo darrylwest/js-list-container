@@ -7,7 +7,7 @@
     "url": "https://github.com/darrylwest/js-list-container.git"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "make test"
   },
   "keywords": [
     "collection",
