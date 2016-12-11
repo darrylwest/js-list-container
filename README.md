@@ -11,9 +11,9 @@ A simple wrapper/container for array lists that provides a base class to extend 
 
 ## Installation
 
-~~~
-	npm install js-list-container --save
-~~~
+```
+npm install js-list-container --save
+```
 
 ## API
 
@@ -49,28 +49,26 @@ A simple wrapper/container for array lists that provides a base class to extend 
 
 Simple use without extension...
 
-~~~
-var ListContainer = require('js-list-container'),
-	options = {},
-	container;
+```
+const ListContainer = require('js-list-container');
+const options = {
+	list:require('./list.json'),
+	lastRefresh:new Date()
+};
 	
-options.list = require('./list.json');
-options.lastRefresh = new Date();
-	
-container = new ListContainer( options );
-	
+const container = new ListContainer( options );
 container.size() === options.list.length;
 	
-container.forEach(function(item) {
+container.forEach(item => {
 	console.log( item );
 });
-~~~
+```
 
 Simple extension use case...
 
 ~~~
-var MyCollection = function(options) {
-	var container = this;
+const MyCollection = function(options) {
+	const container = this;
 	
 	ListContainer.extend( this, options );
 	
@@ -81,30 +79,28 @@ var MyCollection = function(options) {
 	};
 };
 
-var collection = new MyCollection( opts );
+const collection = new MyCollection( opts );
 	
 collection.push( { id:1, created:new Date() } );
 collection.push( { id:2, created:new Date() } );
 	
 collection.size() === 2;
 	
-var item = collection.getItem( 1 );
+let item = collection.getItem( 1 );
 item.id === 2;	
 ~~~
 
 Evented Example
 
 ~~~
-var dash = require('lodash'),
-	ListContainer = require('js-list-container'),
-	options = {},
-	container;
+const dash = require('lodash');
+const ListContainer = require('js-list-container');
+const options = {
+	list:require('./list.json'),
+	lastRefresh:new Date()
+};
 	
-options.list = require('./list.json');
-options.lastRefresh = new Date();
-	
-container = new ListContainer( options );
-
+const container = new ListContainer( options );
 container.onListChange(function() {
     console.log( 'list changed: ', container.lastChangeDate );
 });
@@ -114,7 +110,7 @@ container.onDataChange(function(oldValue, newValue) {
 });
 
 // copy of one of the contained models
-var originalModel = container.getList()[ 3 ],
+let originalModel = container.getList()[ 3 ],
 	changeModel = dash.clone( original );
 
 changeModel.title = 'My New Title';
@@ -123,7 +119,7 @@ changeModel.title = 'My New Title';
 container.updateModel( originalModel, changeModel ) === true;
 
 // this will fire a list change event
-var popped = container.pop();
+let popped = container.pop();
 
 // this will also fire a list change event
 container.clear();
@@ -146,7 +142,7 @@ All objects are tested using gulp and mocha.  You can run tests by doing this:
     
     // or
 
-    gulp test
+    make test
 
     // or
 
@@ -154,4 +150,4 @@ All objects are tested using gulp and mocha.  You can run tests by doing this:
 ~~~
 
 - - -
-<p><small><em>copyright © 2014-2015 rain city software | version 0.90.21</em></small></p>
+###### copyright © 2014-2016 rain city software | version 0.91.22
